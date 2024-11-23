@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://dbsjjn8g0agcv"]
+
+[ext_resource type="Texture2D" uid="uid://td8jtsaou5ci" path="res://assets/Traps/Falling Platforms/On (32x10).png" id="1_xtxy7"]
+[ext_resource type="Texture2D" uid="uid://cnyitvaf3mnry" path="res://assets/Other/Dust Particle.png" id="2_bcyws"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3webj"]
+atlas = ExtResource("1_xtxy7")
+region = Rect2(0, 0, 32, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vuvty"]
+atlas = ExtResource("1_xtxy7")
+region = Rect2(32, 0, 32, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4rs8i"]
+atlas = ExtResource("1_xtxy7")
+region = Rect2(64, 0, 32, 10)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3728f"]
+atlas = ExtResource("1_xtxy7")
+region = Rect2(96, 0, 32, 10)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ea5ya"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3webj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vuvty")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4rs8i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3728f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_81pf5"]
+size = Vector2(32, 5)
+
+[node name="Falling Fan" type="AnimatableBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ea5ya")
+autoplay = "default"
+frame_progress = 0.143239
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_81pf5")
+one_way_collision = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(0, 11.41)
+amount = 5
+lifetime = 0.5
+local_coords = true
+texture = ExtResource("2_bcyws")
+emission_shape = 1
+emission_sphere_radius = 10.95
+scale_amount_min = 0.1
+scale_amount_max = 0.3
+color = Color(0.772549, 1, 1, 0.352941)

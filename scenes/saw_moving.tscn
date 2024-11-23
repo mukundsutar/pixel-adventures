@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://hk2l7f0liyr1"]
+
+[ext_resource type="Script" path="res://scripts/path_2d.gd" id="1_0q1ei"]
+[ext_resource type="PackedScene" uid="uid://vbdmy4asyjlj" path="res://scenes/saw.tscn" id="1_gx5c7"]
+[ext_resource type="Script" path="res://scripts/path_follow_2d.gd" id="2_mbtey"]
+
+[sub_resource type="Curve2D" id="Curve2D_ed2ki"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 280, 107, 0, 0, 0, 0, 280, 107, 0, 0, 0, 0, 280, 107, 0, 0, 0, 0, 431, 107)
+}
+point_count = 4
+
+[node name="Saw_Moving" type="Path2D"]
+y_sort_enabled = true
+curve = SubResource("Curve2D_ed2ki")
+script = ExtResource("1_0q1ei")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(280, 107)
+rotates = false
+script = ExtResource("2_mbtey")
+
+[node name="Saw" parent="PathFollow2D" instance=ExtResource("1_gx5c7")]
+z_index = 2
+y_sort_enabled = true
